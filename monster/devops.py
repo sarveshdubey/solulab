@@ -40,11 +40,8 @@ def get_browser(i=None):
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option("useAutomationExtension", False)
     chrome_options.add_experimental_option("prefs", preferences)
-    capabilities = DesiredCapabilities.CHROME.copy()
-    capabilities["acceptSslCerts"] = True
-    capabilities["acceptInsecureCerts"] = True
-
-    driver = webdriver.Chrome( ChromeDriverManager().install(), options=chrome_options, desired_capabilities=capabilities)
+    
+    driver = webdriver.Chrome( ChromeDriverManager().install(), options=chrome_options)
 
     return driver
 
