@@ -26,7 +26,7 @@ def get_browser(i=None):
             "profile.password_manager_enabled": False,
         }
     chrome_options = Options()
-    # chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--log-level=3")
     chrome_options.add_argument("--disable-gpu")
