@@ -15,9 +15,41 @@ import urllib.request
 
 from packaging.requirements import URL
 
-profile = webdriver.FirefoxProfile("/Users/apple/Library/Application Support/Firefox/Profiles/0ur7nimh.default-release-11")
-gecko_path="/Users/apple/doc/Git/geckodriver/geckodriver"
-driver = webdriver.Firefox(firefox_profile=profile,executable_path=gecko_path)
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+def get_browser(i=None):
+    preferences = {
+            "webrtc.ip_handling_policy": "disable_non_proxied_udp",
+            "webrtc.multiple_routes_enabled": False,
+            "webrtc.nonproxied_udp_enabled": False,
+            "credentials_enable_service": False,
+            "profile.password_manager_enabled": False,
+        }
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--log-level=3")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--disable-notifications")
+    chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--ignore-certificate-errors")
+
+    chrome_options.add_argument("--disable-bundled-ppapi-flash")
+    chrome_options.add_argument("--disable-plugins-discovery")
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option("useAutomationExtension", False)
+    chrome_options.add_experimental_option("prefs", preferences)
+    capabilities = DesiredCapabilities.CHROME.copy()
+    capabilities["acceptSslCerts"] = True
+    capabilities["acceptInsecureCerts"] = True
+
+    driver = webdriver.Chrome( ChromeDriverManager().install(), options=chrome_options, desired_capabilities=capabilities)
+
+    return driver
+
+driver = get_browser()
 
 def location_res(result):
     '''Function to extract location from Indeed search result'''

@@ -44,8 +44,6 @@ def get_browser(i=None):
     capabilities["acceptSslCerts"] = True
     capabilities["acceptInsecureCerts"] = True
 
-    chrome_options.add_extension(fr"proxy_auth_plugin.zip")
-
     driver = webdriver.Chrome( ChromeDriverManager().install(), options=chrome_options, desired_capabilities=capabilities)
 
     return driver
