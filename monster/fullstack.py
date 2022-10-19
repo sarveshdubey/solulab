@@ -17,7 +17,6 @@ from packaging.requirements import URL
 
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 def get_browser(i=None):
     preferences = {
             "webrtc.ip_handling_policy": "disable_non_proxied_udp",
