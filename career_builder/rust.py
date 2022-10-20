@@ -148,6 +148,9 @@ def scrape(cities_list,job_list, max=50):
                 sleep(1)
             print(city + " DONE")
             print("Elapsed time: " + str(dt.datetime.now() - a))  # Update user on progress
+            # Turn results list into dataframe
+            df = pd.DataFrame(results, columns=['Job Title', 'Company', 'Location', 'Salary','Publishing Date', 'Job Description', 'Source'])
+            df.to_csv(f'csvs/CareerBuilder_rust.csv')  # Save data
 
         b = dt.datetime.now()
         c = b - a
@@ -155,15 +158,11 @@ def scrape(cities_list,job_list, max=50):
 
         print(job + "Done")
         print("Elapsed time: " + str(dt.datetime.now() - a))
+        
     d= dt.datetime.now()
     time_taken = d-a
     print(time_taken)
 
-    # Turn results list into dataframe
-    df = pd.DataFrame(results, columns=['Job Title', 'Company', 'Location', 'Salary','Publishing Date', 'Job Description', 'Source'])
-
-    name = str(dt.datetime.now())
-    df.to_csv(f'csvs/CareerBuilder_rust.csv')  # Save data
 
 
 cities = ['Alabama',

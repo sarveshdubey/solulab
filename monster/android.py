@@ -193,6 +193,9 @@ def scrape(cities_list,job_list, max=200):
                 sleep(1)
             print(city + " DONE")
             print("Elapsed time: " + str(dt.datetime.now() - a))  # Update user on progress
+            df = pd.DataFrame(results, columns=['Job Title', 'Company', 'Location', 'Job Description', 'Publishing Date','Company URL','Company Size','Industry Type'])
+            df.to_csv(f'csvs/Monster_android.csv')
+
 
         b = dt.datetime.now()
         c = b - a
@@ -205,9 +208,8 @@ def scrape(cities_list,job_list, max=200):
     print(time_taken)
 
     # Turn results list into dataframe
-    df = pd.DataFrame(results, columns=['Job Title', 'Company', 'Location', 'Job Description', 'Publishing Date','Company URL','Company Size','Industry Type'])
-
-    df.to_csv(f'csvs/Monster_android.csv')  # Save data
+    # Save data
+    print("Every thing done")
 
 
 cities = ['Alabama',
